@@ -1062,6 +1062,19 @@
 
       document.getElementById("current-year").textContent =
         new Date().getFullYear();
+
+      const navLinks = document.querySelectorAll(".nav-item:not(.dropdown)");
+      const menuToggle = document.getElementById("navbarNav");
+      const bsCollapse = new bootstrap.Collapse(menuToggle, { toggle: false });
+
+      navLinks.forEach((l) => {
+        l.addEventListener("click", () => {
+          // Only close if the menu is currently shown (mobile view)
+          if (menuToggle.classList.contains("show")) {
+            bsCollapse.toggle();
+          }
+        });
+      });
     </script>
   </body>
 </html>
