@@ -6,7 +6,57 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Centro Giunta | Especialidades Quirúrgicas</title>
+    <title>Centro Giunta | Diagnótico y Cirugía Ambulatoria</title>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("hiBfC0sleXVRpGV5s");
+      })();
+
+      function sendEmail(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById("submit-button");
+        const btnText = document.getElementById("button-text");
+        const resultDiv = document.getElementById("form-result");
+        const form = document.getElementById("contact-form");
+
+        // UI: Loading State
+        btnText.innerText = "Enviando...";
+        btn.disabled = true;
+        resultDiv.classList.add("d-none"); // Hide previous alert if any
+
+        const serviceID = "gcsvc_1bp7rkh";
+        const templateID = "template_qzz0khs";
+
+        emailjs.sendForm(serviceID, templateID, "#contact-form").then(
+          () => {
+            // UI: Success State
+            btnText.innerText = "¡Enviado!";
+            resultDiv.classList.remove("d-none"); // Show success message
+            form.reset(); // Clear form fields
+
+            // Revert UI after 3 seconds
+            setTimeout(() => {
+              btn.disabled = false;
+              btnText.innerText = "Enviar";
+              // Optional: hide success message after 5 seconds
+              resultDiv.classList.add("d-none");
+            }, 3000);
+          },
+          (err) => {
+            // UI: Error State
+            btn.disabled = false;
+            btnText.innerText = "Enviar";
+            alert("Ups! Algo salió mal: " + JSON.stringify(err));
+          }
+        );
+      }
+    </script>
 
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
@@ -105,7 +155,7 @@
         transition: var(--transition);
       }
       .navbar-brand img {
-        height: 45px;
+        height: 65px;
         width: auto;
         filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
       }
@@ -376,6 +426,11 @@
       .btn-hero-main:active {
         transform: translateY(-2px);
       }
+
+      .contact-box a:hover {
+        opacity: 0.8;
+        transition: opacity 0.2s ease-in-out;
+      }
     </style>
   </head>
   <body>
@@ -384,8 +439,18 @@
     <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#inicio">
-          <img src="img/logo.png" alt="Logo Centro Giunta" />
-          <span>Centro Giunta</span>
+          <img
+            src="img/logogris1.png"
+            alt="Logo Centro Giunta"
+            height="60"
+            class="d-inline-block align-top"
+          />
+          <img
+            src="img/isologo1.png"
+            alt="Logo Centro Giunta"
+            class="d-inline-block align-top"
+            style="height: 70px; width: 280px"
+          />
         </a>
         <button
           class="navbar-toggler border-0"
@@ -455,12 +520,12 @@
               <div class="carousel-inner">
                 <div class="carousel-item active">
                   <img
-                    src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1000"
+                    src="img/index1.jpg"
                     class="d-block w-100"
                     alt="Instalaciones"
                   />
                   <div class="carousel-caption d-none d-md-block">
-                    <h5>Infraestructura Moderna</h5>
+                    <h5>Infraestructura Confortable</h5>
                     <p>Equipamiento de última generación para su seguridad.</p>
                   </div>
                 </div>
@@ -470,6 +535,11 @@
                     class="d-block w-100"
                     alt="Tecnología"
                   />
+                  <!-- <img
+                    src="img/index2.jpg"
+                    class="d-block w-100"
+                    alt="Tecnología"
+                  /> -->
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Tecnología Médica</h5>
                     <p>Líderes en cirugía mini-invasiva ambulatoria.</p>
@@ -513,7 +583,7 @@
           <div class="col-lg-6 ps-lg-5 animate__animated animate__fadeInRight">
             <div class="history-text">
               <p class="lead fw-bold text-primary">
-                Fundada en 1955 como Sanatorio Argentino por el Dr. Orlando
+                Fundado en 1955 como Sanatorio Argentino por el Dr. Orlando
                 Horacio Giunta.
               </p>
               <p>
@@ -527,11 +597,11 @@
               <p>
                 Desde el año 2011, bajo el liderazgo del
                 <strong>Dr. Raúl Horacio Giunta</strong>, nos reestructuramos
-                como un Centro de Especialidades Quirúrgicas Ambulatorias
-                (U.C.M.A.), incorporando tecnología de punta y manteniendo el
-                precepto de ofrecer calidad y excelencia médica por más de medio
-                siglo, adaptándonos a los tiempos modernos con la misma pasión
-                del primer día.
+                como un Centro de Especialidades Quirúrgicas Ambulatorias,
+                incorporando tecnología de punta y manteniendo el precepto de
+                ofrecer calidad y excelencia médica por más de medio siglo,
+                adaptándonos a los tiempos modernos con la misma pasión del
+                primer día.
               </p>
             </div>
           </div>
@@ -560,20 +630,20 @@
               data-bs-toggle="modal"
               data-bs-target="#modal1"
             >
-              <i class="fas fa-syringe"></i>
-              <h3>Quirúrgicas</h3>
-              <p class="text-muted">
-                Cirugía General, Laparoscópica, Plástica y más.
-              </p>
+              <div class="my-3">
+                <img
+                  src="img/ucma.png"
+                  alt="Quirúrgicas"
+                  class="img-fluid"
+                  style="max-height: 120px"
+                />
+              </div>
+
               <div
                 class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
                 style="line-height: 1"
               >
-                <span style="display: inline-block">Mas información</span>
-                <!-- <i
-                  class="fas fa-arrow-right ms-2"
-                  style="font-size: 0.7rem; display: flex; align-items: center"
-                ></i> -->
+                <span>Mas información</span>
               </div>
             </div>
           </div>
@@ -584,19 +654,20 @@
               data-bs-toggle="modal"
               data-bs-target="#modal2"
             >
-              <i class="fas fa-x-ray"></i>
-              <h3>Diagnóstico</h3>
-              <p class="text-muted">
-                Radiología digital y Ecografías de alta resolución.
-              </p>
+              <div class="my-3">
+                <img
+                  src="img/uda.png"
+                  alt="Quirúrgicas"
+                  class="img-fluid"
+                  style="max-height: 180px"
+                />
+              </div>
+
               <div
                 class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
+                style="line-height: 1"
               >
-                Mas información
-                <!-- <i
-                  class="fas fa-arrow-right ms-2"
-                  style="font-size: 0.75rem"
-                ></i> -->
+                <span>Mas información</span>
               </div>
             </div>
           </div>
@@ -607,19 +678,20 @@
               data-bs-toggle="modal"
               data-bs-target="#modal3"
             >
-              <i class="fas fa-heartbeat"></i>
-              <h3>Cardiología</h3>
-              <p class="text-muted">
-                Prevención, diagnóstico y tratamiento cardiovascular.
-              </p>
+              <div class="my-3">
+                <img
+                  src="img/derma.png"
+                  alt="Quirúrgicas"
+                  class="img-fluid"
+                  style="max-height: 250px"
+                />
+              </div>
+
               <div
                 class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
+                style="line-height: 1"
               >
-                Mas información
-                <!-- <i
-                  class="fas fa-arrow-right ms-2"
-                  style="font-size: 0.75rem"
-                ></i> -->
+                <span>Mas información</span>
               </div>
             </div>
           </div>
@@ -630,19 +702,20 @@
               data-bs-toggle="modal"
               data-bs-target="#modal4"
             >
-              <i class="fas fa-bone"></i>
-              <h3>Traumatología</h3>
-              <p class="text-muted">
-                Atención integral de lesiones óseas y ortopedia.
-              </p>
+              <div class="my-3">
+                <img
+                  src="img/ued.jpg"
+                  alt="Quirúrgicas"
+                  class="img-fluid"
+                  style="max-height: 250px"
+                />
+              </div>
+
               <div
                 class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
+                style="line-height: 1"
               >
-                Mas información
-                <!-- <i
-                  class="fas fa-arrow-right ms-2"
-                  style="font-size: 0.75rem"
-                ></i> -->
+                <span>Mas información</span>
               </div>
             </div>
           </div>
@@ -653,19 +726,20 @@
               data-bs-toggle="modal"
               data-bs-target="#modal5"
             >
-              <i class="fas fa-user-md"></i>
-              <h3>Clínica Médica</h3>
-              <p class="text-muted">
-                Atención clínica integral para adultos y prevención.
-              </p>
+              <div class="my-3">
+                <img
+                  src="img/cons.jpg"
+                  alt="Quirúrgicas"
+                  class="img-fluid"
+                  style="max-height: 250px"
+                />
+              </div>
+
               <div
                 class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
+                style="line-height: 1"
               >
-                Mas información
-                <!-- <i
-                  class="fas fa-arrow-right ms-2"
-                  style="font-size: 0.75rem"
-                ></i> -->
+                <span>Mas información</span>
               </div>
             </div>
           </div>
@@ -676,19 +750,68 @@
               data-bs-toggle="modal"
               data-bs-target="#modal6"
             >
-              <i class="fas fa-child"></i>
-              <h3>Pediatría</h3>
-              <p class="text-muted">
-                Cuidado especializado para el crecimiento infantil.
-              </p>
+              <div class="my-3">
+                <img
+                  src="img/odonto.png"
+                  alt="Quirúrgicas"
+                  class="img-fluid"
+                  style="max-height: 250px"
+                />
+              </div>
+
               <div
                 class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
+                style="line-height: 1"
               >
-                Mas información
-                <!-- <i
-                  class="fas fa-arrow-right ms-2"
-                  style="font-size: 0.75rem"
-                ></i> -->
+                <span>Mas información</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="feature-item shadow-sm text-center"
+              data-bs-toggle="modal"
+              data-bs-target="#modal7"
+            >
+              <div class="my-3">
+                <img
+                  src="img/psico.jpg"
+                  alt="Quirúrgicas"
+                  class="img-fluid"
+                  style="max-height: 250px"
+                />
+              </div>
+
+              <div
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
+                style="line-height: 1"
+              >
+                <span>Mas información</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-4">
+            <div
+              class="feature-item shadow-sm text-center"
+              data-bs-toggle="modal"
+              data-bs-target="#modal8"
+            >
+              <div class="my-3">
+                <img
+                  src="img/laser.png"
+                  alt="Quirúrgicas"
+                  class="img-fluid"
+                  style="max-height: 250px"
+                />
+              </div>
+
+              <div
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
+                style="line-height: 1"
+              >
+                <span>Mas información</span>
               </div>
             </div>
           </div>
@@ -699,7 +822,7 @@
     <section id="institucional">
       <div class="container">
         <div class="section-heading text-center">
-          <h1>Áreas Institucionales</h1>
+          <h1>Institucional</h1>
           <div class="divider"></div>
         </div>
         <div class="row align-items-center">
@@ -707,7 +830,7 @@
             class="col-lg-6 mb-5 mb-lg-0 animate__animated animate__fadeInLeft"
           >
             <img
-              src="https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&q=80&w=1000"
+              src="img/quirofano.jpg"
               class="img-fluid rounded-4 shadow-lg"
               alt="Consultorios"
             />
@@ -722,26 +845,31 @@
               </p>
             </div>
             <div class="inst-card">
-              <h4 class="text-primary fw-bold">Unidad U.C.M.A.</h4>
+              <h4 class="text-primary fw-bold">U.C.M.A.</h4>
               <p class="mb-0 text-muted">
                 Nuestra Unidad de Cirugía Mini-invasiva Ambulatoria cuenta con
-                quirófanos equipados con tecnología de video-cirugía y monitoreo
-                anestésico avanzado.
+                quirófano equipado con tecnología de última generación,
+                incluyendo monitoreo multiparamétrico para mayor seguridad de
+                nuestros pacientes.
               </p>
             </div>
             <div class="inst-card">
-              <h4 class="text-primary fw-bold">Sala de Recuperación</h4>
+              <h4 class="text-primary fw-bold">Diagnóstico Dermatológico</h4>
               <p class="mb-0 text-muted">
-                Espacio de internación transitoria diseñado para brindar el
-                máximo confort y seguridad durante el proceso de recuperación
-                post-quirúrgica.
+                En este sector de diagnóstico, realizamos dermatoscopía digital
+                computarizada 4Ky mapeo corporal total, para el estudio de todas
+                las lesiones de la piel y la detección precoz de los cánceres de
+                piel, especialmente melanomas.
               </p>
             </div>
             <div class="inst-card">
-              <h4 class="text-primary fw-bold">Área Técnica</h4>
+              <h4 class="text-primary fw-bold">U.D.A.</h4>
               <p class="mb-0 text-muted">
-                Central de esterilización propia bajo normas internacionales y
-                laboratorio de análisis clínicos de alta complejidad.
+                En nuestra Unidad Dermocosmética Ambulatoria, efectuamos
+                múltiples tratamientos de lesiones de piel, con resultados
+                estéticos y correcciones de problemas cosméticos. Contamos con
+                diferentes procedimientos, que adecuamos a cada tipo de piel y
+                alteraciones.
               </p>
             </div>
           </div>
@@ -766,89 +894,139 @@
         <div class="row g-5">
           <div class="col-lg-7">
             <div class="bg-white p-5 rounded-4 shadow-lg">
-              <form class="row g-4">
+              <div
+                id="form-result"
+                class="alert alert-success d-none mb-4 border-0 shadow-sm"
+                style="
+                  background-color: #d1e7dd;
+                  color: #0f5132;
+                  border-radius: 15px;
+                "
+              >
+                <div class="d-flex align-items-center">
+                  <i class="fas fa-check-circle me-2"></i>
+                  <div>
+                    ¡Mensaje enviado con éxito! Nos pondremos en contacto
+                    pronto.
+                  </div>
+                </div>
+              </div>
+
+              <form
+                id="contact-form"
+                class="row g-4"
+                onsubmit="sendEmail(event)"
+              >
                 <div class="col-md-6">
                   <label class="form-label text-dark fw-bold"
                     >Nombre Completo</label
                   >
                   <input
                     type="text"
+                    name="user_name"
                     class="form-control p-3 bg-light border-0"
                     placeholder="Ej: Juan Pérez"
+                    required
                   />
                 </div>
+
                 <div class="col-md-6">
                   <label class="form-label text-dark fw-bold"
                     >Correo Electrónico</label
                   >
                   <input
                     type="email"
+                    name="user_email"
+                    id="user_email"
                     class="form-control p-3 bg-light border-0"
                     placeholder="nombre@mail.com"
+                    required
+                    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+                    title="Por favor, ingresa un correo válido (ejemplo@dominio.com)"
                   />
                 </div>
 
                 <div class="col-12">
                   <label class="form-label text-dark fw-bold">Mensaje</label>
                   <textarea
+                    name="message"
                     class="form-control p-3 bg-light border-0"
                     rows="5"
                     placeholder="Escriba aquí su mensaje..."
+                    required
                   ></textarea>
                 </div>
+
                 <div class="col-12 text-center text-lg-start">
                   <button
                     type="submit"
+                    id="submit-button"
                     class="btn btn-info btn-lg px-5 py-3 rounded-pill text-white fw-bold border-0 shadow btn-hover-custom"
                     style="background: var(--medical-blue)"
                   >
-                    Enviar
+                    <span id="button-text">Enviar</span>
                   </button>
                 </div>
               </form>
             </div>
           </div>
           <div class="col-lg-5 ps-lg-5">
-            <div class="contact-box d-flex align-items-center mb-4">
-              <i class="fas fa-map-marker-alt me-4"></i>
-              <div>
-                <h5 class="fw-bold mb-1">Nuestra Ubicación</h5>
-                <p class="mb-0 opacity-75">
-                  Victor M. Gaya 555, Berabevú, Santa Fe
-                </p>
-              </div>
+            <div class="contact-box mb-4 position-relative">
+              <a
+                href="https://maps.app.goo.gl/LzHm31Rq9fBjyN4v5"
+                target="_blank"
+                class="text-decoration-none text-reset d-flex align-items-center"
+              >
+                <i class="fas fa-map-marker-alt me-4"></i>
+                <div>
+                  <h5 class="fw-bold mb-1">Nuestra ubicación</h5>
+                  <p class="mb-0 opacity-75">
+                    Victor M. Gaya 555, Berabevú, Santa Fe
+                  </p>
+                </div>
+              </a>
             </div>
-            <div class="contact-box d-flex align-items-center mb-4">
-              <i class="fab fa-whatsapp me-4"></i>
-              <div>
-                <h5 class="fw-bold mb-1">WhatsApp de Turnos</h5>
-                <p class="mb-0 opacity-75">+54 3465 448920</p>
-              </div>
+
+            <div class="contact-box mb-4 position-relative">
+              <a
+                href="https://wa.me/543465448920"
+                target="_blank"
+                class="text-decoration-none text-reset d-flex align-items-center"
+              >
+                <div class="d-flex me-4">
+                  <i class="fab fa-whatsapp me-2"></i>&nbsp;&nbsp;
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1">Turnos</h5>
+                  <p class="mb-0 opacity-75">+54 3465 448920</p>
+                </div>
+              </a>
             </div>
-            <div class="contact-box d-flex align-items-center mb-4">
-              <i class="fas fa-envelope me-4"></i>
-              <div>
-                <h5 class="fw-bold mb-1">Consultas Generales</h5>
-                <p class="mb-0 opacity-75">info@centrogiunta.net</p>
-              </div>
+
+            <div class="contact-box mb-4 position-relative">
+              <a
+                href="mailto:info@centrogiunta.net"
+                class="text-decoration-none text-reset d-flex align-items-center"
+                target="_blank"
+              >
+                <i class="fas fa-envelope me-4"></i>
+                <div>
+                  <h5 class="fw-bold mb-1">Email</h5>
+                  <p class="mb-0 opacity-75">info@centrogiunta.net</p>
+                </div>
+              </a>
             </div>
+
             <div class="contact-box d-flex align-items-center mb-4">
               <i class="fas fa-clock me-4"></i>
               <div>
                 <h5 class="fw-bold mb-1">Horarios de Atención</h5>
-                <p class="small mb-0">
+                <p class="small mb-0 opacity-75">
                   Lunes, Miercoles y Viernes: 09:00 - 14:00 hs
                 </p>
               </div>
             </div>
-            <!-- <div class="mt-5 p-4 rounded-4 bg-light text-dark shadow-sm">
-              <h6 class="fw-bold text-primary">
-                <i class="fas fa-clock me-2"></i>Horarios de Atención
-              </h6>
-              <p class="small mb-0">
-                Lunes a Viernes: 08:00 - 20:00 hs<br />Sábados: 08:00 - 12:00 hs
-              </p>
-            </div> -->
           </div>
         </div>
       </div>
@@ -858,8 +1036,12 @@
       <div class="container">
         <h2 class="fw-bold mb-4 text-white">Centro Giunta</h2>
         <div class="social-icons mb-5">
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.facebook.com/centro.giunta" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.instagram.com/centro.giunta" target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
           <!-- <a href="#"><i class="fab fa-linkedin-in"></i></a> -->
         </div>
         <hr class="opacity-25 mb-5" />
