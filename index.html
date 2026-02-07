@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
     />
-    <title>Centro Giunta | Diagnótico y Cirugía Ambulatoria</title>
+    <title>Centro Giunta | Diagnóstico y Cirugía Ambulatoria</title>
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
@@ -53,7 +53,7 @@
             btn.disabled = false;
             btnText.innerText = "Enviar";
             alert("Ups! Algo salió mal: " + JSON.stringify(err));
-          }
+          },
         );
       }
     </script>
@@ -261,9 +261,12 @@
         font-size: 1.1rem;
       }
 
-      /* --- Specialty Cards --- */
+      /* --- Specialty Cards (Fixed with BIGGER images) --- */
       .feature-item {
-        padding: 50px 35px;
+        /* Kept your styles, but added flex to control the button */
+        display: flex;
+        flex-direction: column;
+        padding: 30px 25px 20px; /* Reduced padding to give image more room */
         background: #fff;
         border-radius: 25px;
         transition: var(--transition);
@@ -273,6 +276,8 @@
         position: relative;
         z-index: 1;
       }
+
+      /* Your existing hover effect - UNCHANGED */
       .feature-item::before {
         content: "";
         position: absolute;
@@ -292,24 +297,38 @@
       .feature-item:hover::before {
         height: 100%;
       }
+
       .feature-item:hover {
         transform: translateY(-15px);
         box-shadow: 0 30px 60px rgba(0, 51, 102, 0.12) !important;
         border-color: var(--medical-blue);
       }
-      .feature-item i {
-        color: var(--medical-blue);
-        font-size: 3.5rem;
-        margin-bottom: 25px;
+
+      /* Image container: Centering and Growing */
+      .feature-item .my-3 {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 200px; /* This ensures the card stays a good size */
+      }
+
+      /* BIGGER IMAGES */
+      .feature-item img {
+        max-height: 200px; /* Increased from previous suggestion */
+        width: 90%; /* Allows it to be wider */
+        object-fit: contain;
         transition: var(--transition);
       }
-      .feature-item:hover i {
-        transform: scale(1.1) rotate(5deg);
+
+      .feature-item:hover img {
+        transform: scale(1.08); /* Nice pop effect on hover */
       }
-      .feature-item h3 {
-        font-weight: 700;
-        color: var(--primary-navy);
-        margin-bottom: 15px;
+
+      /* The Button fixed at bottom */
+      .feature-item .btn-link {
+        margin-top: auto; /* This is the key to fixing it at the bottom */
+        padding-top: 15px;
       }
 
       /* --- Institutional & Contact --- */
@@ -383,12 +402,35 @@
         line-height: 1.7;
       }
 
+      /* Make the list items look more premium in the wider space */
+      .modal-body .list-group-item {
+        padding: 15px 20px;
+        font-size: 1.1rem;
+        transition: background 0.2s ease;
+        border: none; /* Removes the ugly lines between items */
+      }
+
+      .modal-body .list-group-item:hover {
+        background-color: rgba(0, 174, 239, 0.05);
+        border-radius: 10px;
+      }
+
+      .modal-body .fa-check {
+        color: var(
+          --medical-blue
+        ) !important; /* Matches your medical blue variable */
+      }
+
       @media (max-width: 992px) {
         .hero-content h1 {
           font-size: 2.8rem;
         }
         .carousel-item img {
           height: 350px;
+        }
+
+        .modal-lg {
+          max-width: 800px; /* You can adjust this specific pixel value */
         }
       }
 
@@ -530,16 +572,16 @@
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img
+                  <!-- <img
                     src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&q=80&w=1000"
                     class="d-block w-100"
                     alt="Tecnología"
-                  />
-                  <!-- <img
+                  /> -->
+                  <img
                     src="img/index2.jpg"
                     class="d-block w-100"
                     alt="Tecnología"
-                  /> -->
+                  />
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Tecnología Médica</h5>
                     <p>Líderes en cirugía mini-invasiva ambulatoria.</p>
@@ -626,22 +668,22 @@
         <div class="row g-4">
           <div class="col-md-6 col-lg-4">
             <div
-              class="feature-item shadow-sm text-center"
+              class="feature-item shadow-sm text-center h-100 d-flex flex-column p-3"
               data-bs-toggle="modal"
               data-bs-target="#modal1"
             >
-              <div class="my-3">
+              <div
+                class="my-3 flex-grow-1 d-flex align-items-center justify-content-center"
+              >
                 <img
                   src="img/ucma.png"
                   alt="Quirúrgicas"
                   class="img-fluid"
-                  style="max-height: 120px"
+                  style="max-height: 120px; object-fit: contain"
                 />
               </div>
-
               <div
-                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
-                style="line-height: 1"
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center mt-auto"
               >
                 <span>Mas información</span>
               </div>
@@ -650,22 +692,22 @@
 
           <div class="col-md-6 col-lg-4">
             <div
-              class="feature-item shadow-sm text-center"
+              class="feature-item shadow-sm text-center h-100 d-flex flex-column p-3"
               data-bs-toggle="modal"
               data-bs-target="#modal2"
             >
-              <div class="my-3">
+              <div
+                class="my-3 flex-grow-1 d-flex align-items-center justify-content-center"
+              >
                 <img
                   src="img/uda.png"
                   alt="Quirúrgicas"
                   class="img-fluid"
-                  style="max-height: 180px"
+                  style="max-height: 180px; object-fit: contain"
                 />
               </div>
-
               <div
-                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
-                style="line-height: 1"
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center mt-auto"
               >
                 <span>Mas información</span>
               </div>
@@ -674,22 +716,22 @@
 
           <div class="col-md-6 col-lg-4">
             <div
-              class="feature-item shadow-sm text-center"
+              class="feature-item shadow-sm text-center h-100 d-flex flex-column p-3"
               data-bs-toggle="modal"
               data-bs-target="#modal3"
             >
-              <div class="my-3">
+              <div
+                class="my-3 flex-grow-1 d-flex align-items-center justify-content-center"
+              >
                 <img
                   src="img/derma.png"
                   alt="Quirúrgicas"
                   class="img-fluid"
-                  style="max-height: 250px"
+                  style="max-height: 250px; object-fit: contain"
                 />
               </div>
-
               <div
-                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
-                style="line-height: 1"
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center mt-auto"
               >
                 <span>Mas información</span>
               </div>
@@ -698,22 +740,22 @@
 
           <div class="col-md-6 col-lg-4">
             <div
-              class="feature-item shadow-sm text-center"
+              class="feature-item shadow-sm text-center h-100 d-flex flex-column p-3"
               data-bs-toggle="modal"
               data-bs-target="#modal4"
             >
-              <div class="my-3">
+              <div
+                class="my-3 flex-grow-1 d-flex align-items-center justify-content-center"
+              >
                 <img
-                  src="img/ued.jpg"
+                  src="img/eco2.png"
                   alt="Quirúrgicas"
                   class="img-fluid"
-                  style="max-height: 250px"
+                  style="max-height: 350px; object-fit: contain"
                 />
               </div>
-
               <div
-                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
-                style="line-height: 1"
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center mt-auto"
               >
                 <span>Mas información</span>
               </div>
@@ -722,22 +764,22 @@
 
           <div class="col-md-6 col-lg-4">
             <div
-              class="feature-item shadow-sm text-center"
+              class="feature-item shadow-sm text-center h-100 d-flex flex-column p-3"
               data-bs-toggle="modal"
               data-bs-target="#modal5"
             >
-              <div class="my-3">
+              <div
+                class="my-3 flex-grow-1 d-flex align-items-center justify-content-center"
+              >
                 <img
-                  src="img/cons.jpg"
+                  src="img/cons.png"
                   alt="Quirúrgicas"
                   class="img-fluid"
-                  style="max-height: 250px"
+                  style="max-height: 200px; object-fit: contain"
                 />
               </div>
-
               <div
-                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
-                style="line-height: 1"
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center mt-auto"
               >
                 <span>Mas información</span>
               </div>
@@ -746,22 +788,22 @@
 
           <div class="col-md-6 col-lg-4">
             <div
-              class="feature-item shadow-sm text-center"
+              class="feature-item shadow-sm text-center h-100 d-flex flex-column p-3"
               data-bs-toggle="modal"
               data-bs-target="#modal6"
             >
-              <div class="my-3">
+              <div
+                class="my-3 flex-grow-1 d-flex align-items-center justify-content-center"
+              >
                 <img
                   src="img/odonto.png"
                   alt="Quirúrgicas"
                   class="img-fluid"
-                  style="max-height: 250px"
+                  style="max-height: 200px; object-fit: contain"
                 />
               </div>
-
               <div
-                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
-                style="line-height: 1"
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center mt-auto"
               >
                 <span>Mas información</span>
               </div>
@@ -770,22 +812,22 @@
 
           <div class="col-md-6 col-lg-4">
             <div
-              class="feature-item shadow-sm text-center"
+              class="feature-item shadow-sm text-center h-100 d-flex flex-column p-3"
               data-bs-toggle="modal"
               data-bs-target="#modal7"
             >
-              <div class="my-3">
+              <div
+                class="my-3 flex-grow-1 d-flex align-items-center justify-content-center"
+              >
                 <img
-                  src="img/psico.jpg"
+                  src="img/psico.png"
                   alt="Quirúrgicas"
                   class="img-fluid"
-                  style="max-height: 250px"
+                  style="max-height: 250px; object-fit: contain"
                 />
               </div>
-
               <div
-                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
-                style="line-height: 1"
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center mt-auto"
               >
                 <span>Mas información</span>
               </div>
@@ -794,22 +836,22 @@
 
           <div class="col-md-6 col-lg-4">
             <div
-              class="feature-item shadow-sm text-center"
+              class="feature-item shadow-sm text-center h-100 d-flex flex-column p-3"
               data-bs-toggle="modal"
               data-bs-target="#modal8"
             >
-              <div class="my-3">
+              <div
+                class="my-3 flex-grow-1 d-flex align-items-center justify-content-center"
+              >
                 <img
                   src="img/laser.png"
                   alt="Quirúrgicas"
                   class="img-fluid"
-                  style="max-height: 250px"
+                  style="max-height: 200px; object-fit: contain"
                 />
               </div>
-
               <div
-                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center"
-                style="line-height: 1"
+                class="btn btn-link text-info fw-bold text-decoration-none d-inline-flex align-items-center justify-content-center mt-auto"
               >
                 <span>Mas información</span>
               </div>
@@ -857,9 +899,9 @@
               <h4 class="text-primary fw-bold">Diagnóstico Dermatológico</h4>
               <p class="mb-0 text-muted">
                 En este sector de diagnóstico, realizamos dermatoscopía digital
-                computarizada 4Ky mapeo corporal total, para el estudio de todas
-                las lesiones de la piel y la detección precoz de los cánceres de
-                piel, especialmente melanomas.
+                computarizada 4K y mapeo corporal total, para el estudio de
+                todas las lesiones de la piel y la detección precoz de los
+                cánceres de piel, especialmente melanomas.
               </p>
             </div>
             <div class="inst-card">
@@ -1046,7 +1088,8 @@
         </div>
         <hr class="opacity-25 mb-5" />
         <p class="small opacity-50">
-          <span id="current-year"></span> Centro Giunta - Excelencia Médica.<br />
+          <span id="current-year"></span> Centro Giunta | Diagnóstico y Cirugía
+          Ambulatoria<br />
           Todos los derechos reservados.
         </p>
       </div>
@@ -1056,7 +1099,9 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg">
           <div class="modal-header">
-            <h5 class="modal-title fw-bold">Especialidades Quirúrgicas</h5>
+            <h5 class="modal-title fw-bold">
+              Unidad de Cirugía Mini-invasiva Ambulatoria
+            </h5>
             <button
               type="button"
               class="btn-close btn-close-white"
@@ -1064,25 +1109,22 @@
             ></button>
           </div>
           <div class="modal-body">
-            <p>
-              Contamos con quirófanos equipados para cirugías programadas de
-              baja y mediana complejidad en las siguientes áreas:
-            </p>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                <i class="fas fa-check text-primary me-2"></i>Cirugía General y
-                Laparoscópica
+                <i class="fas fa-check text-primary me-2"></i>Cirugía de paredes
+                abdominales
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Cirugía plástica y
+                reparadora
               </li>
               <li class="list-group-item">
                 <i class="fas fa-check text-primary me-2"></i>Cirugía
-                Ginecológica
+                oncodermatológica y dermatológica
               </li>
               <li class="list-group-item">
-                <i class="fas fa-check text-primary me-2"></i>Cirugía Plástica y
-                Reparadora
-              </li>
-              <li class="list-group-item">
-                <i class="fas fa-check text-primary me-2"></i>Cirugía Urológica
+                <i class="fas fa-check text-primary me-2"></i>Cirugía
+                dermocosmética
               </li>
             </ul>
           </div>
@@ -1091,26 +1133,45 @@
     </div>
 
     <div class="modal fade" id="modal2" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content shadow-lg">
           <div class="modal-header">
-            <h5 class="modal-title fw-bold">Diagnóstico por Imágenes</h5>
+            <h5 class="modal-title fw-bold">
+              Unidad de Cirugía Dermatológica Ambulatoria
+            </h5>
             <button
               type="button"
               class="btn-close btn-close-white"
               data-bs-dismiss="modal"
             ></button>
           </div>
-          <div class="modal-body text-center">
-            <i class="fas fa-microscope fa-4x text-info mb-4"></i>
-            <p>
-              Equipamiento digital de alta precisión para diagnósticos rápidos y
-              seguros:
-            </p>
-            <p class="fw-bold">
-              Radiología Digital | Ecografía 2D-3D-4D | Eco-doppler Color |
-              Video Endoscopía Digestiva
-            </p>
+          <div class="modal-body">
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Cirugías
+                oncológicas de tumores de piel
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Microcirugías
+                dermocosméticas
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Tratamiento de las
+                lesiones de piel con radio termólisis pulsada
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Tratamientos
+                cosméticos con láser picosegundos
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Tratamientos
+                cosméticos con ozono terapia
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Tratamientos
+                cosméticos con Plasma-pen
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1120,7 +1181,9 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg">
           <div class="modal-header">
-            <h5 class="modal-title fw-bold">Cardiología Integral</h5>
+            <h5 class="modal-title fw-bold">
+              Unidad de Diagnóstico Dermatológico
+            </h5>
             <button
               type="button"
               class="btn-close btn-close-white"
@@ -1128,22 +1191,14 @@
             ></button>
           </div>
           <div class="modal-body">
-            <p>
-              Atención especializada para el cuidado del corazón y sistema
-              circulatorio:
-            </p>
             <ul class="list-group list-group-flush">
               <li class="list-group-item">
-                <i class="fas fa-heartbeat text-danger me-2"></i
-                >Electrocardiogramas (ECG)
+                <i class="fas fa-check text-primary me-2"></i>Mapeo Corporal
+                Total
               </li>
               <li class="list-group-item">
-                <i class="fas fa-heartbeat text-danger me-2"></i>Evaluación de
-                Riesgo Quirúrgico
-              </li>
-              <li class="list-group-item">
-                <i class="fas fa-heartbeat text-danger me-2"></i>Control de
-                Hipertensión
+                <i class="fas fa-check text-primary me-2"></i>Dermatoscopía
+                Digital Computarizada
               </li>
             </ul>
           </div>
@@ -1152,10 +1207,12 @@
     </div>
 
     <div class="modal fade" id="modal4" tabindex="-1" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content shadow-lg">
           <div class="modal-header">
-            <h5 class="modal-title fw-bold">Traumatología y Ortopedia</h5>
+            <h5 class="modal-title fw-bold">
+              Unidad de Ecodiagnóstico e Intervencionismo
+            </h5>
             <button
               type="button"
               class="btn-close btn-close-white"
@@ -1163,14 +1220,30 @@
             ></button>
           </div>
           <div class="modal-body">
-            <p>
-              Tratamiento de lesiones traumáticas y patologías degenerativas del
-              aparato locomotor.
-            </p>
-            <p>
-              Incluye tratamientos ambulatorios de fracturas, esguinces y
-              cirugías correctivas de miembros.
-            </p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Ecografías
+                generales 2D y 3D
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Ecografías
+                endocavitarias
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Ecografías
+                musculoesqueléticas
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Elastografías
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Doppler Color
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Intervencionismo
+                ecoguiado (biopsias – cirugías)
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1180,7 +1253,9 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg">
           <div class="modal-header">
-            <h5 class="modal-title fw-bold">Clínica Médica</h5>
+            <h5 class="modal-title fw-bold">
+              Consultorio de clínica quirúrgica y clínica médica
+            </h5>
             <button
               type="button"
               class="btn-close btn-close-white"
@@ -1188,11 +1263,18 @@
             ></button>
           </div>
           <div class="modal-body">
-            <p>
-              Atención clínica integral para adultos con enfoque en la
-              prevención, diagnóstico temprano y tratamiento de enfermedades no
-              quirúrgicas.
-            </p>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Cirugía general
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Medicina interna
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Medicina de
+                familia
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1202,7 +1284,7 @@
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content shadow-lg">
           <div class="modal-header">
-            <h5 class="modal-title fw-bold">Pediatría</h5>
+            <h5 class="modal-title fw-bold">Consultorio de Odontología</h5>
             <button
               type="button"
               class="btn-close btn-close-white"
@@ -1210,10 +1292,62 @@
             ></button>
           </div>
           <div class="modal-body">
-            <p>
-              Control de salud del niño sano, seguimiento del crecimiento,
-              vacunación y atención de patologías pediátricas comunes.
+            <p style="text-align: center; color: #0096ce">
+              <strong
+                ><span
+                  style="
+                    font-size: 20px;
+                    align-items: center;
+                    text-align: center;
+                    justify-items: center;
+                  "
+                  >Contacto directo</span
+                ></strong
+              >
             </p>
+            <div class="contact-box" style="justify-items: center">
+              <a
+                href="https://wa.me/543467412615"
+                target="_blank"
+                class="text-decoration-none text-reset d-flex align-items-center"
+              >
+                <div class="d-flex me-4">
+                  <i class="fab fa-whatsapp me-2"></i>&nbsp;&nbsp;
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1">Turnos</h5>
+                  <p class="mb-0 opacity-75">+54 3467 412615</p>
+                </div>
+              </a>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Atención a niños,
+                adolescentes y adultos
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Blanqueamiento
+                dental láser
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Cirugía e
+                implantes dentales
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Endodoncia
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Odontopediatría
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Ortodoncia
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Ortopedia
+                funcional de los maxilares
+              </li>
+            </ul>
           </div>
         </div>
       </div>
