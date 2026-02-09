@@ -133,7 +133,7 @@
 
       /* --- Enhanced Glass Navbar --- */
       .navbar {
-        padding: 20px 0;
+        /* padding: 20px 0; */
         transition: var(--transition);
         background: rgba(255, 255, 255, 0.9);
         backdrop-filter: blur(15px);
@@ -427,6 +427,7 @@
         }
         .carousel-item img {
           height: 350px;
+          padding-bottom: 10px;
         }
 
         .modal-lg {
@@ -473,12 +474,31 @@
         opacity: 0.8;
         transition: opacity 0.2s ease-in-out;
       }
+
+      /* Default for Mobile (Small screens) */
+      .logo-custom {
+        /* display: none; */
+        max-height: 30px;
+        /* height: 35px; */
+        /* width: auto; */
+        max-width: 230px;
+      }
+
+      /* For Desktop (Screens wider than 768px) */
+      @media (min-width: 768px) {
+        .logo-custom {
+          max-height: 45px;
+          /* height: 35px; */
+          /* width: auto; */
+          max-width: 350px;
+        }
+      }
     </style>
   </head>
   <body>
     <div id="preloader"><div class="spinner"></div></div>
 
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <!-- <nav class="navbar navbar-expand-lg fixed-top">
       <div class="container">
         <a class="navbar-brand" href="#inicio">
           <img
@@ -488,14 +508,58 @@
             class="d-inline-block align-top"
           />
           <img
-            src="img/isologo1.png"
+            src="img/isologo4.png"
             alt="Logo Centro Giunta"
-            class="d-inline-block align-top"
-            style="height: 70px; width: 280px"
+            class="logo-custom d-inline-block align-top"
           />
         </a>
         <button
           class="navbar-toggler border-0"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+        >
+          <i class="fas fa-bars-staggered text-primary"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#inicio">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#historia">Historia</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#especialidades">Especialidades</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#institucional">Institucional</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contacto">Contacto</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#inicio">
+          <img
+            src="img/logogris1.png"
+            alt="Logo Centro Giunta"
+            height="60"
+            class="d-inline-block align-top"
+          />
+          <img
+            src="img/isologo4.png"
+            alt="Logo Centro Giunta"
+            class="logo-custom d-lg-inline-block align-top"
+          />
+        </a>
+        <button
+          class="navbar-toggler border-0 shadow-none"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarNav"
@@ -531,7 +595,7 @@
             class="col-lg-6 hero-content animate__animated animate__fadeInLeft"
           >
             <h1 class="animate__animated animate__fadeInUp animate__delay-1s">
-              Excelencia Médica En Constante Evolución
+              Excelencia médica en constante evolución
             </h1>
             <p class="lead mb-5 opacity-75">
               Comprometidos con la salud y el bienestar de nuestra comunidad a
@@ -880,7 +944,7 @@
           <div class="col-lg-6 animate__animated animate__fadeInRight">
             <div class="inst-card">
               <h4 class="text-primary fw-bold">Consultorios Externos</h4>
-              <p class="mb-0 text-muted">
+              <p class="mb-0 text-muted" style="text-align: justify">
                 Contamos con amplios consultorios climatizados y un sistema
                 informatizado de historia clínica única para un seguimiento
                 preciso de cada paciente.
@@ -888,7 +952,7 @@
             </div>
             <div class="inst-card">
               <h4 class="text-primary fw-bold">U.C.M.A.</h4>
-              <p class="mb-0 text-muted">
+              <p class="mb-0 text-muted" style="text-align: justify">
                 Nuestra Unidad de Cirugía Mini-invasiva Ambulatoria cuenta con
                 quirófano equipado con tecnología de última generación,
                 incluyendo monitoreo multiparamétrico para mayor seguridad de
@@ -897,7 +961,7 @@
             </div>
             <div class="inst-card">
               <h4 class="text-primary fw-bold">Diagnóstico Dermatológico</h4>
-              <p class="mb-0 text-muted">
+              <p class="mb-0 text-muted" style="text-align: justify">
                 En este sector de diagnóstico, realizamos dermatoscopía digital
                 computarizada 4K y mapeo corporal total, para el estudio de
                 todas las lesiones de la piel y la detección precoz de los
@@ -906,7 +970,7 @@
             </div>
             <div class="inst-card">
               <h4 class="text-primary fw-bold">U.D.A.</h4>
-              <p class="mb-0 text-muted">
+              <p class="mb-0 text-muted" style="text-align: justify">
                 En nuestra Unidad Dermocosmética Ambulatoria, efectuamos
                 múltiples tratamientos de lesiones de piel, con resultados
                 estéticos y correcciones de problemas cosméticos. Contamos con
@@ -1346,6 +1410,127 @@
               <li class="list-group-item">
                 <i class="fas fa-check text-primary me-2"></i>Ortopedia
                 funcional de los maxilares
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal7" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold">Consultorio de Psicología</h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p style="text-align: center; color: #0096ce">
+              <strong
+                ><span
+                  style="
+                    font-size: 20px;
+                    align-items: center;
+                    text-align: center;
+                    justify-items: center;
+                  "
+                  >Contacto directo</span
+                ></strong
+              >
+            </p>
+            <div class="contact-box" style="justify-items: center">
+              <a
+                href="https://wa.me/543468512830"
+                target="_blank"
+                class="text-decoration-none text-reset d-flex align-items-center"
+              >
+                <div class="d-flex me-4">
+                  <i class="fab fa-whatsapp me-2"></i>&nbsp;&nbsp;
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1">Turnos</h5>
+                  <p class="mb-0 opacity-75">+54 3468 512830</p>
+                </div>
+              </a>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Psicología para
+                niños, adolescentes y adultos
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Coaching
+                ontológico
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Biodecodificación
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Constelaciones
+                individuales
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="modal8" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content shadow-lg">
+          <div class="modal-header">
+            <h5 class="modal-title fw-bold">
+              Consultorio de Cosmetología Laser
+            </h5>
+            <button
+              type="button"
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p style="text-align: center; color: #0096ce">
+              <strong
+                ><span
+                  style="
+                    font-size: 20px;
+                    align-items: center;
+                    text-align: center;
+                    justify-items: center;
+                  "
+                  >Contacto directo</span
+                ></strong
+              >
+            </p>
+            <div class="contact-box" style="justify-items: center">
+              <a
+                href="https://wa.me/542473416422"
+                target="_blank"
+                class="text-decoration-none text-reset d-flex align-items-center"
+              >
+                <div class="d-flex me-4">
+                  <i class="fab fa-whatsapp me-2"></i>&nbsp;&nbsp;
+                  <i class="fa-solid fa-phone"></i>
+                </div>
+                <div>
+                  <h5 class="fw-bold mb-1">Turnos</h5>
+                  <p class="mb-0 opacity-75">+54 2473 416422</p>
+                </div>
+              </a>
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Depilación láser
+                para mujeres y hombres
+              </li>
+              <li class="list-group-item">
+                <i class="fas fa-check text-primary me-2"></i>Cosmetología
+                clínica integral
               </li>
             </ul>
           </div>
